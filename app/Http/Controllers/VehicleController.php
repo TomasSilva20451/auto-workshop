@@ -35,11 +35,9 @@ class VehicleController extends Controller
         return response()->json(['vehicles' => $vehicles], 200);
     }
 
-
     public function store(Request $request)
     {
-        // Validate the request data
-        $validatedData = $request->validate([
+        $request->validate([
             'make' => 'required',
             'model' => 'required',
             'year' => 'required',
@@ -47,20 +45,8 @@ class VehicleController extends Controller
             'status' => 'required',
         ]);
 
-        // Create a new Vehicle instance
-        $vehicle = new Vehicle();
+        $vehicle = Vehicle::create($request->all());
 
-        // Assign the values from the request to the instance attributes
-        $vehicle->make = $validatedData['make'];
-        $vehicle->model = $validatedData['model'];
-        $vehicle->year = $validatedData['year'];
-        $vehicle->price = $validatedData['price'];
-        $vehicle->status = $validatedData['status'];
-
-        // Save the instance to the database
-        $vehicle->save();
-
-        // Return a response indicating the success of the operation
-        return response()->json(['message' => 'Vehicle created successfully'], 201);
+        return response()->json(['message' => 'Vehicle created successfully', 'vehicle' => $vehicle], 201);
     }
 }

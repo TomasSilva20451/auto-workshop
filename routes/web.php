@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/dashboard/real-time-sales-data', [DashboardController::class, 'realTimeSalesData'])->name('dashboard.real-time-sales-data');
+Route::get('/dashboard/generate-visualizations', [DashboardController::class, 'generateVisualizations'])->name('dashboard.generate-visualizations');
+Route::get('/dashboard/fetch-historical-data', [DashboardController::class, 'fetchHistoricalData'])->name('dashboard.fetch-historical-data');
 
 
 Route::get('/', function () {

@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\View;
+use App\Models\Sale;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
-use App\Models\Sale;
 
 class DashboardController extends Controller
 {
+    // DashboardController.php
+
     public function realTimeSalesData()
     {
         // Logic for retrieving real-time sales data goes here
@@ -16,12 +19,17 @@ class DashboardController extends Controller
         $totalRevenue = Sale::sum('price');
         $averageSellingPrice = $totalSales > 0 ? $totalRevenue / $totalSales : 0;
 
-        return response()->json([
+        // Pass the data to the view
+        $salesData = [
             'sales' => $totalSales,
             'revenue' => $totalRevenue,
             'average_selling_price' => $averageSellingPrice,
-        ]);
+        ];
+
+        // Return the view with the data
+        return view('dashboard.real-time-sales-data', $salesData);
     }
+
 
     public function generateVisualizations()
     {
