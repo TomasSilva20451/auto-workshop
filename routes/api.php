@@ -1,5 +1,6 @@
     <?php
 
+    use App\Http\Controllers\VehicleController;
     use App\Http\Controllers\PartController;
     use App\Http\Controllers\ServiceHistoryController;
     use App\Http\Controllers\AppointmentController;
@@ -31,6 +32,11 @@
 
     Route::get('/parts', [PartController::class, 'index']);
     Route::post('/parts', [PartController::class, 'store']);
+
+
+    Route::get('/vehicles', 'App\Http\Controllers\VehicleController@index')->name('vehicles.index');
+
+    Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicles.store');
 
 
     Route::get('/send-email', [AppointmentController::class, 'sendEmail'])->name('send.email');
