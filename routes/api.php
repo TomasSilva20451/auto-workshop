@@ -1,5 +1,6 @@
     <?php
 
+    use App\Http\Controllers\DashboardController;
     use App\Http\Controllers\VehicleController;
     use App\Http\Controllers\PartController;
     use App\Http\Controllers\ServiceHistoryController;
@@ -35,9 +36,12 @@
 
 
     Route::get('/vehicles', 'App\Http\Controllers\VehicleController@index')->name('vehicles.index');
-
     Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicles.store');
 
+
+    Route::get('/dashboard/real-time-sales-data', [DashboardController::class, 'realTimeSalesData']);
+    Route::get('/dashboard/generate-visualizations', [DashboardController::class, 'generateVisualizations']);
+    Route::get('/dashboard/fetch-historical-data', [DashboardController::class, 'fetchHistoricalData']);
 
     Route::get('/send-email', [AppointmentController::class, 'sendEmail'])->name('send.email');
 

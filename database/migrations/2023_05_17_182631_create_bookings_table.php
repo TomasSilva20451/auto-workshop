@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // bookings migration file
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
@@ -18,8 +19,6 @@ return new class extends Migration
             $table->date('BookingDate');
             $table->string('BookingType');
             $table->string('Status');
-            $table->date('CreationDate');
-            $table->unsignedInteger('CustomerID');
             $table->timestamps();
 
             $table->foreign('VehicleID')->references('VehicleID')->on('vehicles');

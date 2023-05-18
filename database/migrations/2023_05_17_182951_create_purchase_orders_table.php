@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // purchase_orders migration file
     public function up()
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
@@ -17,7 +18,6 @@ return new class extends Migration
             $table->unsignedInteger('BookingID');
             $table->string('ItemName');
             $table->decimal('ItemPrice', 8, 2);
-            $table->date('CreationDate');
             $table->timestamps();
 
             $table->foreign('ServiceID')->references('ServiceID')->on('services');
