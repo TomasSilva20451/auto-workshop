@@ -8,11 +8,17 @@ const RealTimeSalesData = () => {
   });
 
   useEffect(() => {
-    // Make an API request to retrieve the real-time sales data
-    fetch('/dashboard/real-time-sales-data')
-      .then(response => response.json())
-      .then(data => setSalesData(data))
-      .catch(error => console.error(error));
+    const fetchSalesData = async () => {
+      try {
+        const response = await fetch('/dashboard/real-time-sales-data');
+        const data = await response.json();
+        setSalesData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchSalesData();
   }, []);
 
   return (
@@ -40,7 +46,7 @@ const RealTimeSalesData = () => {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">Average Selling Price</h5>
-                <p className="card-text">{salesData.average_selling_price}</p>
+                <p className="card-text">{salesData.averageSellingPrice}</p>
               </div>
             </div>
           </div>

@@ -13,9 +13,15 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            // Define other columns for the sales table
-            // Example: $table->string('name');
-            // ...
+            $table->string('name');
+            $table->integer('quantity');
+            $table->decimal('price', 8, 2);
+            // Add more columns as needed
+
+            // Indexes
+            $table->index('name');
+
+            // Timestamps
             $table->timestamps();
         });
     }

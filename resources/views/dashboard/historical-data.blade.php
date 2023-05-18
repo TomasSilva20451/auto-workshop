@@ -17,7 +17,7 @@
             @foreach($data as $item)
             <tr>
                 <td>{{ $item->date }}</td>
-                <td>{{ $item->count }}</td>
+                <td>{{ $item->total_sales }}</td>
                 <td>{{ $item->total_revenue }}</td>
             </tr>
             @endforeach
