@@ -12,7 +12,7 @@ class Appointment extends Model
     protected $fillable = [
         'date',
         'time',
-        'service_type'
-        // 'email'
+        'service_type',
+        'email'
     ];
 }

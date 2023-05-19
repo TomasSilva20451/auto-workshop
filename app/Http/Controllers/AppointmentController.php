@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
 use App\Models\Booking;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -22,8 +20,8 @@ class AppointmentController extends Controller
         $request->validate([
             'date' => 'required',
             'time' => 'required',
-            'service_type' => 'required'
-
+            'service_type' => 'required',
+            'email' => 'required|email'
         ]);
 
         // Check if there are any conflicting appointments for the selected date and time
@@ -41,7 +39,7 @@ class AppointmentController extends Controller
             'date' => $request->input('date'),
             'time' => $request->input('time'),
             'service_type' => $request->input('service_type'),
-            // 'email' => $request->input('email'),
+            'email' => $request->input('email'),
         ]);
 
         // Save the appointment details in the "Booking" table
@@ -53,9 +51,6 @@ class AppointmentController extends Controller
             'booking_type' => $request->input('service_type'),
             'status' => 'pending',
         ]);
-
-        // Send the appointment confirmation email
-        Mail::to($appointment->email)->send(new AppointmentConfirmation($appointment));
 
         // Return a success response
         return response()->json(['message' => 'Appointment created successfully'], 201);
@@ -69,13 +64,7 @@ class AppointmentController extends Controller
      */
     public function sendEmail(Request $request)
     {
-        // Retrieve the appointment details
-        $appointment = Appointment::findOrFail($request->input('appointment_id'));
-
-        // Send the appointment confirmation email
-        Mail::to($appointment->email)->send(new AppointmentConfirmation($appointment));
-
-        // Return a success response
-        return response()->json(['message' => 'Appointment confirmation email sent successfully'], 200);
+        // This method is removed since you don't want to send emails
+        return response()->json(['message' => 'Email functionality is not enabled'], 400);
     }
 }
