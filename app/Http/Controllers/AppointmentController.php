@@ -22,8 +22,8 @@ class AppointmentController extends Controller
         $request->validate([
             'date' => 'required',
             'time' => 'required',
-            'service_type' => 'required',
-            'email' => 'required|email',
+            'service_type' => 'required'
+
         ]);
 
         // Check if there are any conflicting appointments for the selected date and time
@@ -41,7 +41,7 @@ class AppointmentController extends Controller
             'date' => $request->input('date'),
             'time' => $request->input('time'),
             'service_type' => $request->input('service_type'),
-            'email' => $request->input('email'),
+            // 'email' => $request->input('email'),
         ]);
 
         // Save the appointment details in the "Booking" table
