@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\PartController;
@@ -22,6 +23,11 @@ use Illuminate\Support\Facades\Route;
 Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
 
 // Rest of the routes
+
+Route::post('/bookings', [BookingController::class, 'store']);
+Route::get('/bookings', [BookingController::class, 'index']);
+Route::get('/bookings/{id}', [BookingController::class, 'show']);
+Route::put('/bookings/{id}', [BookingController::class, 'update']);
 
 Route::post('/service-history', [ServiceHistoryController::class, 'store'])->name('service-history.store');
 Route::get('/service-history/{vehicle_id}', [ServiceHistoryController::class, 'show'])->name('service-history.show');
