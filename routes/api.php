@@ -6,6 +6,7 @@ use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\ServiceHistoryController;
 use App\Http\Controllers\AppointmentController;
+// use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -60,3 +61,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('/part', PartController::class);
+
+
+
+
+/* 
+Route::get('/test', function (Request $request) {
+    
+    //return User::all(); // find all
+    //return User::find(1); // find id, number 1
+
+    // find id 1, next params
+     $user = User::find(1);
+     return [
+        'name' => $user->name,
+        'email' =>$user->email,
+        'created' =>$user->created_at
+     ];
+}); */
