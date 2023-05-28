@@ -71,7 +71,7 @@ Route::post('/tokens/create', function (Request $request) {
     ]);
     
     $user = User::whereEmail($request->email)->first();
-
+  
     if($user){
         $token = $user->createToken('part');
         return ['token' => $token->plainTextToken];
