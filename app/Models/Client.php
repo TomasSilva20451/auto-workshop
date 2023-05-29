@@ -19,8 +19,8 @@ class Client extends Model
     ];
 
     // Define the relationship with the Booking model
-    public function bookings()
+   /*  public function bookings()
     {
         return $this->hasMany(Booking::class);
-    }
+    } */
 }

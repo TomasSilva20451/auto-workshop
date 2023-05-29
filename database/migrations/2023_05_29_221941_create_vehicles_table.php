@@ -4,32 +4,33 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateVehiclesTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
-            $table->increments('VehicleID');
-            $table->string('Make');
-            $table->string('Model');
-            $table->integer('Year');
-            $table->date('CreationDate');
-            $table->string('Status');
-            $table->unsignedInteger('ClientID');
-
-            $table->foreign('ClientID')->references('ClientID')->on('clients');
+            $table->id();
+            $table->string('make');
+            $table->string('model');
+            $table->integer('year');
+            $table->decimal('price', 10, 2)->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down()
     {
         Schema::dropIfExists('vehicles');
     }
-};
+}

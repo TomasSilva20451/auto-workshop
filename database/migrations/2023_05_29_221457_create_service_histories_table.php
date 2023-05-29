@@ -4,30 +4,35 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateServiceHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
         Schema::create('service_histories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('vehicle_id');
-            $table->string('service_type', 255);
+            $table->id();
+            $table->unsignedBigInteger('vehicle_id');
+            $table->string('service_type');
             $table->date('date');
             $table->integer('duration');
             $table->decimal('cost', 10, 2);
             $table->timestamps();
+
+/*             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade'); */
         });
     }
 
-
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down()
     {
         Schema::dropIfExists('service_histories');
     }
-};
+}

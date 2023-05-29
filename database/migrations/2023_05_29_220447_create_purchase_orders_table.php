@@ -4,32 +4,35 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePurchaseOrdersTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    // purchase_orders migration file
     public function up()
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
-            $table->increments('PurchaseOrderID');
-            $table->unsignedInteger('ServiceID');
-            $table->unsignedInteger('BookingID');
+            $table->id();
+            $table->unsignedBigInteger('ServiceID');
+            $table->unsignedBigInteger('BookingID');
             $table->string('ItemName');
-            $table->decimal('ItemPrice', 8, 2);
+            $table->decimal('ItemPrice', 10, 2);
             $table->timestamps();
 
-            $table->foreign('ServiceID')->references('ServiceID')->on('services');
-            $table->foreign('BookingID')->references('BookingID')->on('bookings');
+           /*  $table->foreign('ServiceID')->references('id')->on('services')->onDelete('cascade');
+            $table->foreign('BookingID')->references('id')->on('bookings')->onDelete('cascade'); */
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down()
     {
         Schema::dropIfExists('purchase_orders');
     }
-};
+}

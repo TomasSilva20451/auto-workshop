@@ -18,8 +18,8 @@ class ServiceHistory extends Model
     ];
 
     // Define the relationship with the Vehicle model
-    public function vehicle()
+  /*   public function vehicle()
     {
         return $this->belongsTo(Vehicle::class);
-    }
+    } */
 }

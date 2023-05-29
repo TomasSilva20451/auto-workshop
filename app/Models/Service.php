@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseOrder extends Model
+class Service extends Model
 {
     use HasFactory;
 
+    protected $table = 'services';
+    protected $primaryKey = 'ServiceID';
+    public $timestamps = true;
+
     protected $fillable = [
         'ServiceID',
+        'Name',
         'BookingID',
-        'ItemName',
-        'ItemPrice',
+        'VehicleID',
     ];
 }

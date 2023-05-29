@@ -10,13 +10,8 @@ class Sale extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date',
+        'name',
+        'quantity',
         'price',
     ];
-
-    // Define the relationship with the Vehicle model
-    public function vehicle()
-    {
-        return $this->belongsTo(Vehicle::class);
-    }
 }

@@ -4,30 +4,31 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->increments('ServiceID');
+            $table->integer('ServiceID')->primary();
             $table->string('Name');
-            $table->unsignedInteger('BookingID');
-            $table->unsignedInteger('VehicleID');
+            $table->integer('BookingID');
+            $table->integer('VehicleID');
             $table->timestamps();
-
-            $table->foreign('BookingID')->references('BookingID')->on('bookings');
-            $table->foreign('VehicleID')->references('VehicleID')->on('vehicles');
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down()
     {
         Schema::dropIfExists('services');
     }
-};
+}

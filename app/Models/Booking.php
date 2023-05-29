@@ -30,8 +30,8 @@ class Booking extends Model
     protected $primaryKey = 'BookingID';
 
     // Define the relationship with the Appointment model
-    public function appointment()
+    /*  public function appointment()
     {
         return $this->belongsTo(Appointment::class);
-    }
+    } */
 }

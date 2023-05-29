@@ -9,17 +9,21 @@ class Vehicle extends Model
 {
     use HasFactory;
 
+    protected $table = 'vehicles';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
+
     protected $fillable = [
+        'id',
         'make',
         'model',
         'year',
-        'creation_date',
+        'price',
         'status',
-        'client_id',
     ];
 
-    public function serviceHistories()
+   /*  public function serviceHistories()
     {
         return $this->hasMany(ServiceHistory::class);
-    }
+    } */
 }

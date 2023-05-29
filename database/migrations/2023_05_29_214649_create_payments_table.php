@@ -4,32 +4,33 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->increments('PaymentID');
-            $table->unsignedInteger('BookingID');
+            $table->integer('PaymentID')->primary();
+            $table->integer('BookingID');
             $table->string('PaymentType');
-            $table->decimal('PaymentAmount', 8, 2);
+            $table->decimal('PaymentAmount', 10, 2);
             $table->date('CreationDate');
-            $table->unsignedInteger('PurchaseOrderID');
+            $table->integer('PurchaseOrderID');
             $table->timestamps();
-
-            $table->foreign('BookingID')->references('BookingID')->on('bookings');
-            $table->foreign('PurchaseOrderID')->references('PurchaseOrderID')->on('purchase_orders');
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down()
     {
         Schema::dropIfExists('payments');
     }
-};
+}
