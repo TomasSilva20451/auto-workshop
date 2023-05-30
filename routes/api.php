@@ -38,7 +38,7 @@ use App\Http\Controllers\ProfileController;
 // appointments
 Route::prefix('appointments')->group(function () {
     Route::post('/', [AppointmentController::class, 'store']);
-    Route::post('/send-email', [AppointmentController::class, 'sendEmail']);
+   /*  Route::post('/send-email', [AppointmentController::class, 'sendEmail']); */
 });
 
 // bookings

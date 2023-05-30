@@ -43,7 +43,7 @@ class AppointmentController extends Controller
             'service_type' => $request->input('service_type'),
             'email' => $request->input('email'),
         ]);
-
+/* 
         // Save the appointment details in the "Booking" table
         $booking = Booking::create([
             'appointment_id' => $appointment->id,
@@ -52,7 +52,7 @@ class AppointmentController extends Controller
             'booking_date' => $request->input('date'),
             'booking_type' => $request->input('service_type'),
             'status' => 'pending',
-        ]);
+        ]); */
 
         // Return a success response
         return response()->json(['message' => 'Appointment created successfully'], 201);
@@ -64,9 +64,9 @@ class AppointmentController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function sendEmail(Request $request)
+    /* public function sendEmail(Request $request)
     {
         // This method is removed since you don't want to send emails
         return response()->json(['message' => 'Email functionality is not enabled'], 400);
-    }
+    } */
 }
