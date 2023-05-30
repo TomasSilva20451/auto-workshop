@@ -11,7 +11,35 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard.index');
+        $totalSales = Sale::count();
+        $totalRevenue = Sale::sum('price');
+        $averageSellingPrice = $totalSales > 0 ? $totalRevenue / $totalSales : 0;
+
+        $realTimeSalesData = [
+            'sales' => $totalSales,
+            'revenue' => $totalRevenue,
+            'average_selling_price' => $averageSellingPrice,
+        ];
+
+        $vehiclesByMake = Vehicle::select('make', DB::raw('COUNT(*) as count'))
+            ->groupBy('make')
+            ->get();
+
+        $visualization1 = $vehiclesByMake->pluck('count')->toArray();
+        $visualization2 = $vehiclesByMake->pluck('make')->toArray();
+
+        $historicalData = Sale::select('date', DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as total_revenue'))
+            ->groupBy('date')
+            ->get();
+
+        $data = [
+            'realTimeSalesData' => $realTimeSalesData,
+            'visualization1' => $visualization1,
+            'visualization2' => $visualization2,
+            'historicalData' => $historicalData,
+        ];
+
+        return view('dashboard.index', $data);
     }
 
     public function realTimeSalesData()
@@ -26,7 +54,7 @@ class DashboardController extends Controller
             'average_selling_price' => $averageSellingPrice,
         ];
 
-        return view('dashboard.real-time-sales-data', $salesData);
+        return response()->json($salesData);
     }
 
     public function generateVisualizations()
@@ -45,14 +73,13 @@ class DashboardController extends Controller
         ]);
     }
 
+
     public function fetchHistoricalData()
     {
-        $salesData = Sale::select('date', DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as total_revenue'))
+        $historicalData = Sale::select('date', DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as total_revenue'))
             ->groupBy('date')
             ->get();
 
-        return response()->json([
-            'data' => $salesData,
-        ]);
+        return response()->json($historicalData);
     }
 }

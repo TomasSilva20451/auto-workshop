@@ -49,4 +49,35 @@ class VehicleController extends Controller
 
         return response()->json(['message' => 'Vehicle created successfully', 'vehicle' => $vehicle], 201);
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'make' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'price' => 'required|numeric',
+            'status' => 'required',
+        ]);
+
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->update($request->all());
+
+        return response()->json(['message' => 'Vehicle updated successfully', 'vehicle' => $vehicle]);
+    }
+
+    public function show($id)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+
+        return response()->json(['vehicle' => $vehicle]);
+    }
+
+    public function destroy($id)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->delete();
+
+        return response()->json(['message' => 'Vehicle deleted successfully']);
+    }
 }

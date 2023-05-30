@@ -16,12 +16,12 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $client = new Client();
-        $client->Name = $request->input('Name');
-        $client->Address = $request->input('Address');
-        $client->PhoneNumber = $request->input('PhoneNumber');
-        $client->Email = $request->input('Email');
-        $client->CreationDate = now();
-        $client->Type = $request->input('Type');
+        $client->name = $request->input('name');
+        $client->address = $request->input('address');
+        $client->phone_number = $request->input('phone_number');
+        $client->email = $request->input('email');
+        $client->creation_date = now();
+        $client->type = $request->input('type');
         $client->save();
 
         return response()->json(['message' => 'Client created successfully'], 201);
@@ -36,11 +36,11 @@ class ClientController extends Controller
     public function update(Request $request, $id)
     {
         $client = Client::find($id);
-        $client->Name = $request->input('Name');
-        $client->Address = $request->input('Address');
-        $client->PhoneNumber = $request->input('PhoneNumber');
-        $client->Email = $request->input('Email');
-        $client->Type = $request->input('Type');
+        $client->name = $request->input('name');
+        $client->address = $request->input('address');
+        $client->phone_number = $request->input('phone_number');
+        $client->email = $request->input('email');
+        $client->type = $request->input('type');
         $client->save();
 
         return response()->json(['message' => 'Client updated successfully']);

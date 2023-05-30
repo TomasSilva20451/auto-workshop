@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/dashboard/real-time-sales-data', [DashboardController::class, 'realTimeSalesData'])->name('dashboard.real-time-sales-data');
-Route::get('/dashboard/generate-visualizations', [DashboardController::class, 'generateVisualizations'])->name('dashboard.generate-visualizations');
-Route::get('/dashboard/fetch-historical-data', [DashboardController::class, 'fetchHistoricalData'])->name('dashboard.fetch-historical-data');
+
+// dashboard
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard/real-time-sales-data', [DashboardController::class, 'realTimeSalesData']);
+Route::get('/dashboard/generate-visualizations', [DashboardController::class, 'generateVisualizations']);
+Route::get('/dashboard/fetch-historical-data', [DashboardController::class, 'fetchHistoricalData']);
 
 // Rest of the routes
 
@@ -24,4 +27,4 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -38,7 +38,7 @@ use App\Http\Controllers\ProfileController;
 // appointments
 Route::prefix('appointments')->group(function () {
     Route::post('/', [AppointmentController::class, 'store']);
-   /*  Route::post('/send-email', [AppointmentController::class, 'sendEmail']); */
+    /*  Route::post('/send-email', [AppointmentController::class, 'sendEmail']); */
 });
 
 // bookings
@@ -111,6 +111,9 @@ Route::delete('/services/{service}', [ServiceController::class, 'destroy']);
 // vehicles
 Route::get('/vehicles', [VehicleController::class, 'index']);
 Route::post('/vehicles', [VehicleController::class, 'store']);
+Route::get('/vehicles/{id}', [VehicleController::class, 'show']);
+Route::put('/vehicles/{id}', [VehicleController::class, 'update']);
+Route::delete('/vehicles/{id}', [VehicleController::class, 'destroy']);
 
 /* --------------//-------------- */
 
@@ -129,10 +132,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 /* --------------//-------------- */
 
-// real-time-sales-data
-Route::get('/real-time-sales-data', [DashboardController::class, 'getRealTimeSalesData'])->name('real-time-sales-data');
-
-/* --------------//-------------- */
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
@@ -145,10 +144,10 @@ Route::post('/tokens/create', function (Request $request) {
         'email' => 'required',
         'password' => 'required'
     ]);
-    
+
     $user = User::whereEmail($request->email)->first();
-  
-    if($user){
+
+    if ($user) {
         $token = $user->createToken('part');
         return ['token' => $token->plainTextToken];
     }
