@@ -82,4 +82,11 @@ class DashboardController extends Controller
 
         return response()->json($historicalData);
     }
+
+    public function realTimeInventoryUpdates()
+    {
+        $inventory = Vehicle::where('status', 'Active')->get();
+
+        return response()->json($inventory);
+    }
 }

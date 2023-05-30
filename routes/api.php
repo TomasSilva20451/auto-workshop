@@ -128,6 +128,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.delete');
+
+    Route::get('/dashboard/inventory-updates', [DashboardController::class, 'realTimeInventoryUpdates'])->name('dashboard.inventory-updates');
 });
 
 /* --------------//-------------- */

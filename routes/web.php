@@ -20,7 +20,7 @@ Route::get('/dashboard/real-time-sales-data', [DashboardController::class, 'real
 Route::get('/dashboard/generate-visualizations', [DashboardController::class, 'generateVisualizations']);
 Route::get('/dashboard/fetch-historical-data', [DashboardController::class, 'fetchHistoricalData']);
 
-// Rest of the routes
+
 
 
 Route::get('/', function () {
