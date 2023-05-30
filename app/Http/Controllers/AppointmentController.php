@@ -21,7 +21,9 @@ class AppointmentController extends Controller
             'date' => 'required',
             'time' => 'required',
             'service_type' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'vehicle_id' => 'required|exists:vehicles,id',
+            'client_id' => 'required|exists:clients,id',
         ]);
 
         // Check if there are any conflicting appointments for the selected date and time
