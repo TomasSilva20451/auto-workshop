@@ -37,8 +37,12 @@ use App\Http\Controllers\ProfileController;
 
 // appointments
 Route::prefix('appointments')->group(function () {
-    Route::post('/', [AppointmentController::class, 'store']);
-    /*  Route::post('/send-email', [AppointmentController::class, 'sendEmail']); */
+    Route::post('/', [AppointmentController::class, 'store'])->name('appointments.store');
+    Route::get('/', [AppointmentController::class, 'index'])->name('appointments.index');
+    Route::get('/{id}', [AppointmentController::class, 'show'])->name('appointments.show');
+    Route::put('/{id}', [AppointmentController::class, 'update'])->name('appointments.update');
+    Route::delete('/{id}', [AppointmentController::class, 'delete'])->name('appointments.delete');
+    /* Route::post('/send-email', [AppointmentController::class, 'sendEmail'])->name('appointments.sendEmail'); */
 });
 
 // bookings
