@@ -42,7 +42,6 @@ Route::prefix('appointments')->group(function () {
     Route::get('/{id}', [AppointmentController::class, 'show'])->name('appointments.show');
     Route::put('/{id}', [AppointmentController::class, 'update'])->name('appointments.update');
     Route::delete('/{id}', [AppointmentController::class, 'delete'])->name('appointments.delete');
-    /* Route::post('/send-email', [AppointmentController::class, 'sendEmail'])->name('appointments.sendEmail'); */
 });
 
 // bookings

@@ -50,8 +50,8 @@ class AppointmentController extends Controller
             'time' => 'required',
             'service_type' => 'required',
             'email' => 'required|email',
-            'vehicle_id' => 'required|exists:vehicles,id',
-            'client_id' => 'required|exists:clients,id',
+            /* 'vehicle_id' => 'required|exists:vehicles,id',
+            'client_id' => 'required|exists:clients,id', */
         ]);
 
         // Check if there are any conflicting appointments for the selected date and time
@@ -71,16 +71,7 @@ class AppointmentController extends Controller
             'service_type' => $request->input('service_type'),
             'email' => $request->input('email'),
         ]);
-        /* 
-        // Save the appointment details in the "Booking" table
-        $booking = Booking::create([
-            'appointment_id' => $appointment->id,
-            'vehicle_id' => $request->input('vehicle_id'),
-            'client_id' => $request->input('client_id'),
-            'booking_date' => $request->input('date'),
-            'booking_type' => $request->input('service_type'),
-            'status' => 'pending',
-        ]); */
+       
 
         // Return a success response
         return response()->json(['message' => 'Appointment created successfully'], 201);
@@ -107,8 +98,8 @@ class AppointmentController extends Controller
             'time' => 'required',
             'service_type' => 'required',
             'email' => 'required|email',
-            'vehicle_id' => 'required|exists:vehicles,id',
-            'client_id' => 'required|exists:clients,id',
+            /* 'vehicle_id' => 'required|exists:vehicles,id',
+            'client_id' => 'required|exists:clients,id', */
         ]);
 
         // Check if there are any conflicting appointments for the updated date and time
@@ -157,15 +148,5 @@ class AppointmentController extends Controller
         return response()->json(['message' => 'Appointment deleted successfully'], 200);
     }
 
-    /**
-     * Send the appointment confirmation email.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    /* public function sendEmail(Request $request)
-    {
-        // This method is removed since you don't want to send emails
-        return response()->json(['message' => 'Email functionality is not enabled'], 400);
-    } */
+   
 }
