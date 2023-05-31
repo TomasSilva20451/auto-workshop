@@ -61,7 +61,8 @@ Route::delete('/clients/{id}', [ClientController::class, 'destroy']);
 
 // invoices
 Route::get('/invoices', [InvoiceController::class, 'index']);
-Route::post('/invoices', [InvoiceController::class, 'store']);
+/* Route::post('/invoices', [InvoiceController::class, 'store']); */
+Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
 Route::get('/invoices/{invoice}', [InvoiceController::class, 'show']);
 Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
 Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy']);
