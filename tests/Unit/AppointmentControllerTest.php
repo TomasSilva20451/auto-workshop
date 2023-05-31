@@ -48,4 +48,33 @@ class AppointmentControllerTest extends TestCase
         // Assert that the response contains the expected JSON message
         $response->assertJson(['message' => 'Appointment created successfully']);
     }
+
+    // Trying to store an Existing Appointment 
+    public function testValidateExistingAppointment()
+    {
+        // Create an existing appointment
+        Appointment::create([
+            'date' => '2023-08-01',
+            'time' => '10:00 AM',
+            'service_type' => 'Sample',
+            'email' => 'existing@example.com',
+        ]);
+
+        // Create a fake appointment request data
+        $requestData = [
+            'date' => '2023-08-01',
+            'time' => '10:00 AM',
+            'service_type' => 'Sample',
+            'email' => 'example@example.com',
+        ];
+
+        // Send a POST request to the store method of the AppointmentController
+        $response = $this->postJson(route('appointments.store'), $requestData);
+
+        // Assert that the response has a status code indicating a validation error
+        $response->assertStatus(400);
+
+        // Assert that the response contains the expected JSON message
+        $response->assertJson(['message' => 'The selected appointment slot is not available.']);
+    }
 }
