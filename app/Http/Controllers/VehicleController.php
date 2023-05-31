@@ -40,7 +40,7 @@ class VehicleController extends Controller
         $request->validate([
             'make' => 'required',
             'model' => 'required',
-            'year' => 'required',
+            'year' => 'required|integer|digits:4|max:' . date('Y'),
             'price' => 'required|numeric',
             'status' => 'required',
         ]);
@@ -55,7 +55,7 @@ class VehicleController extends Controller
         $request->validate([
             'make' => 'required',
             'model' => 'required',
-            'year' => 'required',
+            'year' => 'required|integer|digits:4|max:' . date('Y'),
             'price' => 'required|numeric',
             'status' => 'required',
         ]);
