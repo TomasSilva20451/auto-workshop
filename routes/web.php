@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +20,8 @@ Route::get('/dashboard/real-time-sales-data', [DashboardController::class, 'real
 Route::get('/dashboard/generate-visualizations', [DashboardController::class, 'generateVisualizations']);
 Route::get('/dashboard/fetch-historical-data', [DashboardController::class, 'fetchHistoricalData']);
 
+// password/update
+Route::put('/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
 
 
 

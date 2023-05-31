@@ -139,6 +139,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dashboard/inventory-updates', [DashboardController::class, 'realTimeInventoryUpdates'])->name('dashboard.inventory-updates');
 });
 
+// password
+Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
+
 /* --------------//-------------- */
 
 
