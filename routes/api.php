@@ -17,9 +17,7 @@ use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProfileController;
-
-
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +32,9 @@ use App\Http\Controllers\ProfileController;
 
 
 // Rest of the routes
+
+// users
+Route::resource('users',UserController::class);
 
 // appointments
 Route::prefix('appointments')->group(function () {
