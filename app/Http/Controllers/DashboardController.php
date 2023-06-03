@@ -28,8 +28,7 @@ class DashboardController extends Controller
         $visualization1 = $vehiclesByMake->pluck('count')->toArray();
         $visualization2 = $vehiclesByMake->pluck('make')->toArray();
 
-        $historicalData = Sale::select('date', DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as total_revenue'))
-            ->groupBy('date')
+        $historicalData = Sale::select(DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as total_revenue'))
             ->get();
 
         $data = [
@@ -73,11 +72,9 @@ class DashboardController extends Controller
         ]);
     }
 
-
     public function fetchHistoricalData()
     {
-        $historicalData = Sale::select('date', DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as total_revenue'))
-            ->groupBy('date')
+        $historicalData = Sale::select(DB::raw('COUNT(*) as count'), DB::raw('SUM(price) as total_revenue'))
             ->get();
 
         return response()->json($historicalData);
