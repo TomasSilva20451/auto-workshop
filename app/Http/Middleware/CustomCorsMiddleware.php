@@ -13,6 +13,7 @@ class CustomCorsMiddleware
         $allowedOrigins = [
             'http://localhost:5173',
             'http://localhost:3000',
+            'http://localhost:3001',
         ];
 
         if (in_array($request->header('Origin'), $allowedOrigins)) {
