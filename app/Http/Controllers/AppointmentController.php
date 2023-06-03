@@ -18,6 +18,7 @@ class AppointmentController extends Controller
         $appointments = Appointment::all();
 
         return response()->json(['appointments' => $appointments], 200);
+    
     }
 
     /**
@@ -36,6 +37,16 @@ class AppointmentController extends Controller
 
         return response()->json(['appointment' => $appointment], 200);
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        return response()->json(Appointment::whereId($id)->first());
+       
+    }
+    
     /**
      * Store a newly created appointment in storage.
      *
